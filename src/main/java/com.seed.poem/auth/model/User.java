@@ -1,47 +1,26 @@
 package com.seed.poem.auth.model;
 
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+/**
+ * Created by Jiwei Yuan on 18-5-18.
+ */
+public class User {
 
-import java.util.Collection;
+    private String name;
+    private String phone;
 
-@Document(collection="users")
-public class User implements UserDetails {
-
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public String getName() {
+        return name;
     }
 
-    @Override
-    public String getPassword() {
-        return null;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    @Override
-    public String getUsername() {
-        return null;
+    public String getPhone() {
+        return phone;
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
