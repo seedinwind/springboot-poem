@@ -1,4 +1,4 @@
-package com.seed.poem.pojo;
+package com.seed.poem.business.pojo;
 import org.springframework.data.annotation.Id;
 
 public class Author{

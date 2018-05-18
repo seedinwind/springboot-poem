@@ -25,7 +25,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("没有该用户 '%s'.", username));
         } else {
             //这里返回上面继承了 UserDetails  接口的用户类,为了简单我们写个工厂类
-            return new UserDetails();
+            return null;
         }
     }
 }

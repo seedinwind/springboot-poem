@@ -1,13 +1,12 @@
-package  com.seed.poem.controller;
+package com.seed.poem.business.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.seed.poem.repo.AuthorRepository;
-import com.seed.poem.pojo.Author;
+import com.seed.poem.business.repo.AuthorRepository;
+import com.seed.poem.business.pojo.Author;
 
 @RestController
 public class AuthorController {

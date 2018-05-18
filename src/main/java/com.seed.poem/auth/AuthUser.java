@@ -1,12 +1,11 @@
 package com.seed.poem.auth;
 
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.seed.poem.auth.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-@Document(collection="users")
 public class AuthUser implements UserDetails {
 
 
@@ -43,5 +42,9 @@ public class AuthUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return false;
+    }
+
+    public static AuthUser create(User user){
+         return null;
     }
 }

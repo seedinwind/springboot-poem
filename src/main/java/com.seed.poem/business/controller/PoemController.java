@@ -1,12 +1,11 @@
-package  com.seed.poem.controller;
+package com.seed.poem.business.controller;
 
-import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.seed.poem.repo.PoemRepository;
-import com.seed.poem.pojo.Poem;
+import com.seed.poem.business.repo.PoemRepository;
+import com.seed.poem.business.pojo.Poem;
 
 import java.util.List;
 
