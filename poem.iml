@@ -192,5 +192,49 @@
     <orderEntry type="library" scope="TEST" name="Gradle: ch.qos.logback:logback-core:1.2.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.apache.logging.log4j:log4j-api:2.10.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: org.ow2.asm:asm:5.0.4" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: io.jsonwebtoken:jjwt:0.7.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.jsonwebtoken:jjwt:0.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.jsonwebtoken:jjwt:0.7.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: io.springfox:springfox-spring-web:2.7.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: io.springfox:springfox-spi:2.7.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: io.springfox:springfox-core:2.7.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.reflections:reflections:0.9.11" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: com.google.guava:guava:20.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.javassist:javassist:3.21.0-GA" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: net.bytebuddy:byte-buddy:1.7.11" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.springfox:springfox-spring-web:2.7.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.springfox:springfox-spi:2.7.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.springfox:springfox-core:2.7.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.reflections:reflections:0.9.11" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.guava:guava:20.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.javassist:javassist:3.21.0-GA" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: net.bytebuddy:byte-buddy:1.7.11" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.springfox:springfox-spring-web:2.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.springfox:springfox-spi:2.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.springfox:springfox-core:2.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.springframework.plugin:spring-plugin-metadata:1.2.0.RELEASE" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.reflections:reflections:0.9.11" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: com.google.guava:guava:20.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.javassist:javassist:3.21.0-GA" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: io.springfox:springfox-swagger2:2.7.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: io.springfox:springfox-swagger-common:2.7.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: io.springfox:springfox-schema:2.7.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: io.swagger:swagger-models:1.5.13" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: io.swagger:swagger-annotations:1.5.13" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.mapstruct:mapstruct:1.1.0.Final" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.springfox:springfox-swagger2:2.7.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.springfox:springfox-swagger-common:2.7.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.springfox:springfox-schema:2.7.0" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.swagger:swagger-models:1.5.13" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: io.swagger:swagger-annotations:1.5.13" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Gradle: org.mapstruct:mapstruct:1.1.0.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.springfox:springfox-swagger2:2.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.springfox:springfox-swagger-common:2.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.springfox:springfox-schema:2.7.0" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.swagger:swagger-models:1.5.13" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: io.swagger:swagger-annotations:1.5.13" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.mapstruct:mapstruct:1.1.0.Final" level="project" />
   </component>
 </module>

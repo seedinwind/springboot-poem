@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-import com.seed.poem.business.pojo.Poem;
+import com.seed.poem.business.model.Poem;
 
 //@RepositoryRestResource(collectionResourceRel = "poems", path = "poems")
 public interface PoemRepository extends MongoRepository<Poem,String>{

@@ -1,5 +1,6 @@
 package com.seed.poem.auth.service;
 
+import com.seed.poem.auth.model.AuthUser;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(String.format("没有该用户 '%s'.", username));
         } else {
             //这里返回上面继承了 UserDetails  接口的用户类,为了简单我们写个工厂类
-            return null;
+            return AuthUser.create(user);
         }
     }
 }

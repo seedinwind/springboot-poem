@@ -3,6 +3,10 @@ package com.seed.poem.auth.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by Jiwei Yuan on 18-5-18.
  */
@@ -13,7 +17,15 @@ public class User {
     @Id
     private String id;
     private String name;
-    private String phone;
+    private String password;
+    private Date lastPasswordResetDate;
+
+    private List<String> roles;
+
+
+    public String getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -23,11 +35,26 @@ public class User {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Date getLastPasswordResetDate() {
+        return lastPasswordResetDate;
+    }
+
+    public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+        this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    public void addRole(String role) {
+        if(roles==null){
+           roles=new ArrayList<String>();
+        }
+        roles.add(role);
     }
 }
