@@ -1,12 +1,14 @@
 package com.seed.poem.auth.model;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AuthUser implements UserDetails {
 
@@ -14,23 +16,23 @@ public class AuthUser implements UserDetails {
     private String userName;
     private String password;
     private Date lastPasswordResetDate;
-
+    private Collection<? extends GrantedAuthority> authorities;
     private List<String> roles;
 
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return new ArrayList<GrantedAuthority>();
+        return authorities;
     }
 
     @Override
     public String getPassword() {
-        return userName;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return password;
+        return userName;
     }
 
     public Date getLastPasswordResetDate() {
@@ -43,22 +45,22 @@ public class AuthUser implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public static AuthUser create(User user){
@@ -66,6 +68,13 @@ public class AuthUser implements UserDetails {
         au.id=user.getId();
         au.userName=user.getName();
         au.password=user.getPassword();
-         return au;
+        au.authorities=mapToGrantedAuthorities(user.getRoles());
+        return au;
+    }
+
+    private static List<GrantedAuthority> mapToGrantedAuthorities(List<String> authorities) {
+        return authorities.stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
 }

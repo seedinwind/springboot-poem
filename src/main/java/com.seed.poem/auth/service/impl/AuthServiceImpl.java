@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -56,8 +58,8 @@ public class AuthServiceImpl implements AuthService {
             return JsonResult.<User>builder().error(1,"注册帐号错误!").build();
         }
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         final String rawPassword = userToAdd.getPassword();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         userToAdd.setPassword(encoder.encode(rawPassword));
         userToAdd.setLastPasswordResetDate(new Date());
 //            Role userRole = roleRepository.findByName("ROLE_USER");
@@ -76,7 +78,13 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public JsonResult<String> login(String username, String password) {
+        if(username==null) {
+            return JsonResult.<String>builder().error(1, "帐号不存在").build();
+        }
 
+        if(password==null) {
+            return JsonResult.<String>builder().error(1, "密码错误").build();
+        }
         UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
         try {
             final Authentication authentication = authenticationManager.authenticate(upToken);

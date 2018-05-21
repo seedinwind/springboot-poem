@@ -51,6 +51,14 @@ public class User {
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
     public void addRole(String role) {
         if(roles==null){
            roles=new ArrayList<String>();

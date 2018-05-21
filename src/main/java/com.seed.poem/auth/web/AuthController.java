@@ -2,7 +2,10 @@ package com.seed.poem.auth.web;
 
 import com.seed.poem.JsonResult;
 import com.seed.poem.auth.model.User;
+import com.seed.poem.auth.repo.UserRepository;
 import com.seed.poem.auth.service.AuthService;
+import com.seed.poem.business.model.Poem;
+import com.seed.poem.business.repo.PoemRepository;
 import com.seed.poem.config.jwt.JwtAuthenticationRequest;
 import com.seed.poem.config.jwt.JwtAuthenticationResponse;
 import io.swagger.annotations.ApiImplicitParam;
@@ -11,12 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by seedinwind on 18/5/20.
@@ -66,5 +69,4 @@ public class AuthController {
     public JsonResult<User> register(@RequestBody User addedUser) throws AuthenticationException {
         return authService.register(addedUser);
     }
-
 }
