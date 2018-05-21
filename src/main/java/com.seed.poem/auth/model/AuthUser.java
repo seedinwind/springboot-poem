@@ -69,6 +69,7 @@ public class AuthUser implements UserDetails {
         au.userName=user.getName();
         au.password=user.getPassword();
         au.authorities=mapToGrantedAuthorities(user.getRoles());
+        au.lastPasswordResetDate=user.getLastPasswordResetDate();
         return au;
     }
 
