@@ -19,6 +19,7 @@ public class User {
     private String name;
     private String password;
     private Date lastPasswordResetDate;
+    private String assosiateId="";
 
     private List<String> roles;
 
@@ -37,6 +38,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getAssosiateId() {
+        return assosiateId;
     }
 
     public void setPassword(String password) {

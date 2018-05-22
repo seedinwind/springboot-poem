@@ -69,4 +69,6 @@ public class AuthController {
     public JsonResult<User> register(@RequestBody User addedUser) throws AuthenticationException {
         return authService.register(addedUser);
     }
+
+
 }

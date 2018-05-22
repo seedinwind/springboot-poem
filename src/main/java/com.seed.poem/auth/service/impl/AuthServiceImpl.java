@@ -39,6 +39,8 @@ public class AuthServiceImpl implements AuthService {
     private JwtTokenUtil jwtTokenUtil;
     private UserRepository userRepository;
 
+
+
     @Autowired
     public AuthServiceImpl(
             AuthenticationManager authenticationManager,
@@ -56,6 +58,11 @@ public class AuthServiceImpl implements AuthService {
 
         if (userToAdd.getName() == null) {
             return JsonResult.<User>builder().error(1,"注册帐号错误!").build();
+        }
+
+        User u=userRepository.findByName(userToAdd.getName());
+        if(u!=null){
+            return JsonResult.<User>builder().error(1,"该用户已存在!").build();
         }
 
         final String rawPassword = userToAdd.getPassword();
