@@ -14,12 +14,18 @@ import java.util.List;
 @Document(collection="users")
 public class User {
 
+   public enum UserType{
+        OWN,WX
+    }
+
     @Id
     private String id;
     private String name;
     private String password;
     private Date lastPasswordResetDate;
     private String assosiateId="";
+
+    private int type;
 
     private List<String> roles;
 
@@ -54,6 +60,14 @@ public class User {
 
     public void setLastPasswordResetDate(Date lastPasswordResetDate) {
         this.lastPasswordResetDate = lastPasswordResetDate;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public List<String> getRoles() {

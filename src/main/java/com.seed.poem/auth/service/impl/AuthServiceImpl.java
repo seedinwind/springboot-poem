@@ -75,6 +75,7 @@ public class AuthServiceImpl implements AuthService {
 //        }
 //        userToAdd.setRoles(Collections.singletonList(userRole));
         userToAdd.addRole("ROLE_USER");
+        userToAdd.setType(User.UserType.OWN.ordinal());
         try {
             return JsonResult.<User>builder().data(userRepository.save(userToAdd)).build();
         } catch (DataIntegrityViolationException e) {

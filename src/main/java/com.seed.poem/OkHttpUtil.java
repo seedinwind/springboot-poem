@@ -31,4 +31,14 @@ public class OkHttpUtil {
        Response res=call.execute();
       return res.body().string();
     }
+
+    public String getRequest(String url) throws IOException {
+        Request req=new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+        Call call= client.newCall(req);
+        Response res=call.execute();
+        return res.body().string();
+    }
 }
