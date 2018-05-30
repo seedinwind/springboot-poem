@@ -2,3 +2,5 @@
 /.gradle/
 /build/
 poem.iml
+/out
+/upload-dir
