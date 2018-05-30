@@ -39,8 +39,6 @@ public class AuthServiceImpl implements AuthService {
     private JwtTokenUtil jwtTokenUtil;
     private UserRepository userRepository;
 
-
-
     @Autowired
     public AuthServiceImpl(
             AuthenticationManager authenticationManager,

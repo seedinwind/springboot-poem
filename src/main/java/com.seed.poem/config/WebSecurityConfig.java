@@ -66,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers( "/poem").permitAll()
                 .antMatchers( "/auth/**").permitAll()
+                .antMatchers( "/upload/**").permitAll()
 //                .antMatchers( "/author").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
