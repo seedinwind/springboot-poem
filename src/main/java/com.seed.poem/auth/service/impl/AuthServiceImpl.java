@@ -67,11 +67,6 @@ public class AuthServiceImpl implements AuthService {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         userToAdd.setPassword(encoder.encode(rawPassword));
         userToAdd.setLastPasswordResetDate(new Date());
-//            Role userRole = roleRepository.findByName("ROLE_USER");
-//            if (userRole == null){
-//            userRole = roleRepository.save(new Role("ROLE_USER"));
-//        }
-//        userToAdd.setRoles(Collections.singletonList(userRole));
         userToAdd.addRole("ROLE_USER");
         userToAdd.setType(User.UserType.OWN.ordinal());
         try {

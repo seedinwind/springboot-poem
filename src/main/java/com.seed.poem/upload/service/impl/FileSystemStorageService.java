@@ -1,5 +1,6 @@
 package com.seed.poem.upload.service.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -9,6 +10,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
+import com.seed.poem.upload.model.NamedFile;
 import com.seed.poem.upload.service.FileService;
 import com.seed.poem.upload.StorageProperties;
 import com.seed.poem.upload.StorageException;
@@ -21,6 +23,8 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.naming.Name;
+
 @Service
 public class FileSystemStorageService implements FileService {
 
@@ -32,8 +36,8 @@ public class FileSystemStorageService implements FileService {
     }
 
     @Override
-    public void store(MultipartFile file) {
-        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+    public void store(NamedFile file) {
+        String filename = StringUtils.cleanPath(file.getFileName());
         try {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file " + filename);
@@ -98,6 +102,9 @@ public class FileSystemStorageService implements FileService {
 
     @Override
     public void init() {
+        if(Files.exists(rootLocation)){
+            return;
+        }
         try {
             Files.createDirectories(rootLocation);
         }

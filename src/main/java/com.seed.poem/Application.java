@@ -19,7 +19,6 @@ public class Application {
     @Bean
     CommandLineRunner init(FileService storageService) {
         return (args) -> {
-            storageService.deleteAll();
             storageService.init();
         };
     }
