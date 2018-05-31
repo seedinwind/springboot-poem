@@ -47,7 +47,7 @@ public class UploadController {
     @PostMapping("/upload")
     public JsonResult<List<String>> upload(@RequestParam("category")String category,@RequestParam("file") MultipartFile[] file) {
 
-        return ;
+        return storageService.store(file);
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)
