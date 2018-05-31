@@ -8,18 +8,18 @@ public class JsonResult<T> {
 
     private  int resCode;
 
-    private final T data;
+    private  T data;
 
     private  String error;
 
-    private JsonResult(JsonResultBuilder<T> builder) {
-        this.resCode = builder.resCode;
-        this.data = builder.data;
-        this.error = builder.error;
+    public JsonResult(T data) {
+        this.resCode=0;
+        this.data = data;
     }
 
-    public static <T>JsonResult.JsonResultBuilder<T> builder(){
-        return new JsonResultBuilder<T>();
+    public JsonResult(int resCode, String error) {
+        this.resCode = resCode;
+        this.error = error;
     }
 
     public int getResCode() {
@@ -43,37 +43,6 @@ public class JsonResult<T> {
                 '}';
     }
 
-    public static final class JsonResultBuilder<T> {
 
-        private int resCode;
-
-        private T data;
-
-        private String error;
-
-        private JsonResultBuilder() {
-
-        }
-
-        public JsonResultBuilder error(int code,String error) {
-            this.error = error;
-            this.resCode = code;
-            return this;
-        }
-
-        public JsonResultBuilder data(T data) {
-            this.data = data;
-            this.resCode = 0;
-            return this;
-        }
-
-        public JsonResult build() {
-            return new JsonResult<T>(this);
-        }
-    }
-
-    public static void main(String[] args) {
-        System.out.print(JsonResult.<String>builder().data("asd").build().toString());
-    }
 
 }

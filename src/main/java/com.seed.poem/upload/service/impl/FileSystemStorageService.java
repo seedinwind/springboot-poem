@@ -1,6 +1,5 @@
 package com.seed.poem.upload.service.impl;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -8,9 +7,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
-import com.seed.poem.upload.model.NamedFile;
+import com.seed.poem.JsonResult;
+import com.seed.poem.Util;
 import com.seed.poem.upload.service.FileService;
 import com.seed.poem.upload.StorageProperties;
 import com.seed.poem.upload.StorageException;
@@ -18,12 +20,10 @@ import com.seed.poem.upload.StorageFileNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.naming.Name;
 
 @Service
 public class FileSystemStorageService implements FileService {
@@ -36,26 +36,42 @@ public class FileSystemStorageService implements FileService {
     }
 
     @Override
-    public void store(NamedFile file) {
-        String filename = StringUtils.cleanPath(file.getFileName());
+    public JsonResult<List<String>> store(MultipartFile[] file) {
+        ArrayList<String> names=new ArrayList<>();
+        for(MultipartFile f:file) {
+           String name= storeFile(f);
+            names.add(name);
+        }
+        return new JsonResult<>(names);
+    }
+
+    private String storeFile(MultipartFile file) {
+        String fileName = createFileName(file.getOriginalFilename());
         try {
             if (file.isEmpty()) {
-                throw new StorageException("Failed to store empty file " + filename);
+                throw new StorageException("Failed to store empty file " + fileName);
             }
-            if (filename.contains("..")) {
+            if (fileName.contains("..")) {
                 // This is a security check
                 throw new StorageException(
                         "Cannot store file with relative path outside current directory "
-                                + filename);
+                                + fileName);
             }
             try (InputStream inputStream = file.getInputStream()) {
-                Files.copy(inputStream, this.rootLocation.resolve(filename),
+                Files.copy(inputStream, this.rootLocation.resolve(fileName),
                     StandardCopyOption.REPLACE_EXISTING);
             }
         }
         catch (IOException e) {
-            throw new StorageException("Failed to store file " + filename, e);
+            throw new StorageException("Failed to store file " + fileName, e);
         }
+        return fileName;
+    }
+
+    private String createFileName(String name) {
+        String userid=(String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String fileName=userid+System.currentTimeMillis()+name;
+        return Util.md5Hex(fileName);
     }
 
     @Override

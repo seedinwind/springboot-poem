@@ -55,12 +55,12 @@ public class AuthServiceImpl implements AuthService {
     public JsonResult<User> register(User userToAdd) {
 
         if (userToAdd.getName() == null) {
-            return JsonResult.<User>builder().error(1,"注册帐号错误!").build();
+            return new JsonResult(1,"注册帐号错误!");
         }
 
         User u=userRepository.findByName(userToAdd.getName());
         if(u!=null){
-            return JsonResult.<User>builder().error(1,"该用户已存在!").build();
+            return new JsonResult(1,"该用户已存在!");
         }
 
         final String rawPassword = userToAdd.getPassword();
@@ -70,31 +70,31 @@ public class AuthServiceImpl implements AuthService {
         userToAdd.addRole("ROLE_USER");
         userToAdd.setType(User.UserType.OWN.ordinal());
         try {
-            return JsonResult.<User>builder().data(userRepository.save(userToAdd)).build();
+            return new  JsonResult<>(userRepository.save(userToAdd));
         } catch (DataIntegrityViolationException e) {
             logger.debug(e.getMessage());
-            return JsonResult.<User>builder().error(500,e.getRootCause().getMessage()).build();
+            return new  JsonResult<>(500,e.getRootCause().getMessage());
         }
     }
 
     @Override
     public JsonResult<String> login(String username, String password) {
         if(username==null) {
-            return JsonResult.<String>builder().error(1, "帐号不存在").build();
+            return new JsonResult(1, "帐号不存在");
         }
 
         if(password==null) {
-            return JsonResult.<String>builder().error(1, "密码错误").build();
+            return new JsonResult(1, "密码错误");
         }
         UsernamePasswordAuthenticationToken upToken = new UsernamePasswordAuthenticationToken(username, password);
         try {
             final Authentication authentication = authenticationManager.authenticate(upToken);
             SecurityContextHolder.getContext().setAuthentication(authentication);
             final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-            return JsonResult.<String>builder().data(jwtTokenUtil.generateToken(userDetails)).build();
+            return new JsonResult(jwtTokenUtil.generateToken(userDetails));
         } catch (BadCredentialsException e) {
             logger.debug(e.getMessage());
-            return JsonResult.<String>builder().error(1,"帐号或密码错误").build();
+            return new JsonResult<>(1,"帐号或密码错误");
         }
     }
 

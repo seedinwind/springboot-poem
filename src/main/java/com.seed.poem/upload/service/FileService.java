@@ -1,17 +1,18 @@
 package com.seed.poem.upload.service;
 
-import com.seed.poem.upload.model.NamedFile;
+import com.seed.poem.JsonResult;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.stream.Stream;
 
 public interface FileService {
 
     void init();
 
-    void store(NamedFile file);
+    JsonResult<List<String>> store(MultipartFile[] file);
 
     Stream<Path> loadAll();
 

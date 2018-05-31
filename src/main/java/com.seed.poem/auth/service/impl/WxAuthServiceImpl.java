@@ -49,7 +49,7 @@ public class WxAuthServiceImpl implements WxAuthService {
             Gson gson=new Gson();
             WxTokenResult res=  gson.fromJson(tokenRes,WxTokenResult.class);
             if(res.getAccess_token()==null){
-                return JsonResult.builder().error(502,"获取微信Token失败").build();
+                return new JsonResult<>(502,"获取微信Token失败");
             }else{
                 User userToAdd=userRepository.findByName(res.getOpenid());
                 if(userToAdd==null){
@@ -61,10 +61,10 @@ public class WxAuthServiceImpl implements WxAuthService {
                 userToAdd.setPassword(res.getAccess_token()+"_weixin_"+res.getRefresh_token());
                 userToAdd.setLastPasswordResetDate(new Date());
                 userRepository.save(userToAdd);
-                return JsonResult.<String>builder().data(jwtTokenUtil.generateToken(AuthUser.create(userToAdd))).build();
+                return new JsonResult<>(jwtTokenUtil.generateToken(AuthUser.create(userToAdd)));
             }
         }catch (IOException e){
-            return JsonResult.builder().error(501,"获取微信Token失败").build();
+            return new JsonResult<>(501,"获取微信Token失败");
         }
     }
 
