@@ -1,4 +1,4 @@
-package com.seed.poem.upload.service;
+package com.seed.poem.publish.service;
 
 import com.seed.poem.JsonResult;
 import org.springframework.core.io.Resource;

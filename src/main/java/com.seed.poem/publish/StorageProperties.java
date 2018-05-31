@@ -1,4 +1,4 @@
-package com.seed.poem.upload;
+package com.seed.poem.publish;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

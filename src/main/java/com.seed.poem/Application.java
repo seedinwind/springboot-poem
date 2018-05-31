@@ -1,7 +1,7 @@
 package com.seed.poem;
 
-import com.seed.poem.upload.StorageProperties;
-import com.seed.poem.upload.service.FileService;
+import com.seed.poem.publish.StorageProperties;
+import com.seed.poem.publish.service.FileService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,8 +1,9 @@
-package com.seed.poem.upload;
+package com.seed.poem.publish.web;
 
 import com.seed.poem.JsonResult;
 
-import com.seed.poem.upload.service.FileService;
+import com.seed.poem.publish.StorageFileNotFoundException;
+import com.seed.poem.publish.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
@@ -44,8 +45,9 @@ public class UploadController {
 //    }
 
     @PostMapping("/upload")
-    public JsonResult<List<String>> handleFileUpload(@RequestParam("file") MultipartFile[] file) {
-        return storageService.store(file);
+    public JsonResult<List<String>> upload(@RequestParam("category")String category,@RequestParam("file") MultipartFile[] file) {
+
+        return ;
     }
 
     @ExceptionHandler(StorageFileNotFoundException.class)

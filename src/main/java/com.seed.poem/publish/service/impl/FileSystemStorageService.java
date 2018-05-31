@@ -1,4 +1,4 @@
-package com.seed.poem.upload.service.impl;
+package com.seed.poem.publish.service.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,10 +13,10 @@ import java.util.stream.Stream;
 
 import com.seed.poem.JsonResult;
 import com.seed.poem.Util;
-import com.seed.poem.upload.service.FileService;
-import com.seed.poem.upload.StorageProperties;
-import com.seed.poem.upload.StorageException;
-import com.seed.poem.upload.StorageFileNotFoundException;
+import com.seed.poem.publish.service.FileService;
+import com.seed.poem.publish.StorageProperties;
+import com.seed.poem.publish.StorageException;
+import com.seed.poem.publish.StorageFileNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;

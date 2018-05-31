@@ -1,4 +1,4 @@
-package com.seed.poem.upload;
+package com.seed.poem.publish;
 
 public class StorageException extends RuntimeException {
 
