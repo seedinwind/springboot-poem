@@ -4,6 +4,8 @@ import com.seed.poem.auth.model.AuthUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -20,9 +22,11 @@ import java.util.Map;
 @Component
 public class JwtTokenUtil implements Serializable {
 
+    protected final Log logger = LogFactory.getLog(getClass());
+
     private static final long serialVersionUID = -3301605591108950415L;
 
-    private static final String CLAIM_KEY_USERNAME = "sub";
+    private static final String CLAIM_KEY_USERNAME = "account";
     private static final String CLAIM_KEY_CREATED = "created";
 
     @Value("${jwt.secret}")
@@ -35,9 +39,10 @@ public class JwtTokenUtil implements Serializable {
         String username;
         try {
             final Claims claims = getClaimsFromToken(token);
-            username = claims.getSubject();
+            username =claims.getSubject();
         } catch (Exception e) {
             username = null;
+            logger.info("jwt  getAccount   " + e.getMessage());
         }
         return username;
     }
@@ -72,6 +77,8 @@ public class JwtTokenUtil implements Serializable {
                     .parseClaimsJws(token)
                     .getBody();
         } catch (Exception e) {
+            logger.info("jwt   " + e.getMessage());
+            e.printStackTrace();
             claims = null;
         }
         return claims;
@@ -91,15 +98,12 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public String generateToken(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<String, Object>();
-        claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
-        claims.put(CLAIM_KEY_CREATED, new Date());
-        return generateToken(claims);
+        return generateToken( userDetails.getUsername());
     }
 
-    private String generateToken(Map<String, Object> claims) {
+    private String generateToken(String account) {
         return Jwts.builder()
-                .setClaims(claims)
+                .setSubject(account)
                 .setExpiration(generateExpirationDate())
                 .signWith(SignatureAlgorithm.HS512, secret)
                 .compact();
@@ -116,7 +120,7 @@ public class JwtTokenUtil implements Serializable {
         try {
             final Claims claims = getClaimsFromToken(token);
             claims.put(CLAIM_KEY_CREATED, new Date());
-            refreshedToken = generateToken(claims);
+            refreshedToken = generateToken(claims.getSubject());
         } catch (Exception e) {
             refreshedToken = null;
         }
@@ -130,7 +134,6 @@ public class JwtTokenUtil implements Serializable {
         //final Date expiration = getExpirationDateFromToken(token);
         return (
                 username.equals(user.getUsername())
-                        && !isTokenExpired(token)
-                        && !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate()));
+                        && !isTokenExpired(token));
     }
 }

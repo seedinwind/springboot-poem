@@ -1,5 +1,6 @@
 package com.seed.poem.publish.service.impl;
 
+import com.seed.poem.auth.model.AuthUser;
 import com.seed.poem.publish.model.UserImageInfo;
 import com.seed.poem.publish.repo.ImageMaterialRepository;
 import com.seed.poem.publish.service.MaterialService;
@@ -17,11 +18,11 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public void storeImageInfo(String category, List<String> res) {
-        String userid=(String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserImageInfo info=materialRepository.findByUidAndFolder(userid,category);
+        AuthUser user=(AuthUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserImageInfo info=materialRepository.findByUidAndFolder(user.getId(),category);
         if(info==null){
             info=new UserImageInfo();
-            info.setUid(userid);
+            info.setUid(user.getId());
             info.setFolder(category);
             info.setOpen(0);
         }

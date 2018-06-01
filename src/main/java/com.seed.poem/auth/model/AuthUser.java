@@ -63,6 +63,10 @@ public class AuthUser implements UserDetails {
         return true;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public static AuthUser create(User user){
         AuthUser au=new AuthUser();
         au.id=user.getId();

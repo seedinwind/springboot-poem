@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import com.seed.poem.JsonResult;
 import com.seed.poem.Util;
+import com.seed.poem.auth.model.AuthUser;
 import com.seed.poem.publish.service.FileService;
 import com.seed.poem.publish.StorageProperties;
 import com.seed.poem.publish.StorageException;
@@ -69,8 +70,8 @@ public class FileSystemStorageService implements FileService {
     }
 
     private String createFileName(String name) {
-        String userid=(String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String fileName=userid+System.currentTimeMillis()+name;
+        AuthUser user=(AuthUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String fileName=user.getId()+System.currentTimeMillis()+name;
         return Util.md5Hex(fileName);
     }
 
