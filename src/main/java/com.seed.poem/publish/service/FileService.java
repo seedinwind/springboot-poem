@@ -12,7 +12,7 @@ public interface FileService {
 
     void init();
 
-    JsonResult<List<String>> store(MultipartFile[] file);
+    List<String> store(MultipartFile[] file);
 
     Stream<Path> loadAll();
 

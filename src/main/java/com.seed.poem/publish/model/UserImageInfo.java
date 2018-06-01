@@ -3,6 +3,7 @@ package com.seed.poem.publish.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection="images")
@@ -13,7 +14,7 @@ public class UserImageInfo {
     private int open;
     private String uid;
     private String folder;
-    private List<String> files;
+    private List<String> files=new ArrayList<>();
 
     public String getId() {
         return id;

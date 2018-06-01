@@ -36,13 +36,13 @@ public class FileSystemStorageService implements FileService {
     }
 
     @Override
-    public JsonResult<List<String>> store(MultipartFile[] file) {
+    public List<String> store(MultipartFile[] file) {
         ArrayList<String> names=new ArrayList<>();
         for(MultipartFile f:file) {
            String name= storeFile(f);
             names.add(name);
         }
-        return new JsonResult<>(names);
+        return names;
     }
 
     private String storeFile(MultipartFile file) {
