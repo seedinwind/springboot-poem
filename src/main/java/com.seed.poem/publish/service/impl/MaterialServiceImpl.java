@@ -18,11 +18,11 @@ public class MaterialServiceImpl implements MaterialService {
 
     @Override
     public void storeImageInfo(String category, List<String> res) {
-        AuthUser user=(AuthUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        UserImageInfo info=materialRepository.findByUidAndFolder(user.getId(),category);
+        String userId=(String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserImageInfo info=materialRepository.findByUidAndFolder(userId,category);
         if(info==null){
             info=new UserImageInfo();
-            info.setUid(user.getId());
+            info.setUid(userId);
             info.setFolder(category);
             info.setOpen(0);
         }

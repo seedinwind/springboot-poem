@@ -70,8 +70,8 @@ public class FileSystemStorageService implements FileService {
     }
 
     private String createFileName(String name) {
-        AuthUser user=(AuthUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String fileName=user.getId()+System.currentTimeMillis()+name;
+        String userId=(String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String fileName=userId+System.currentTimeMillis()+name;
         return Util.md5Hex(fileName);
     }
 
