@@ -1,6 +1,5 @@
 package com.seed.poem.publish.service.impl;
 
-import com.seed.poem.auth.model.AuthUser;
 import com.seed.poem.publish.model.UserImageInfo;
 import com.seed.poem.publish.repo.ImageMaterialRepository;
 import com.seed.poem.publish.service.MaterialService;
