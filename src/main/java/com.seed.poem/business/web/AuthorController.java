@@ -14,7 +14,7 @@ public class AuthorController {
     @Autowired
     private AuthorRepository authorRepository;
 
-    @RequestMapping("/author")
+    @RequestMapping("/content/author")
     public Author findAuthor(@RequestParam(value="name", defaultValue="World") String name) {
         return authorRepository.findByName(name);
     }

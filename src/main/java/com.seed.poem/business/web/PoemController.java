@@ -16,12 +16,12 @@ public class PoemController {
     @Autowired
     private PoemRepository poemRepository;
 
-    @RequestMapping("/poem")
+    @RequestMapping("/content/poem/author")
     public JsonResult<List<Poem>> findPoemListByAuthor(@RequestParam(value="author", defaultValue="李白") String author) {
         return  new JsonResult<>(poemRepository.findByAuthor(author));
     }
 
-    @RequestMapping("/poem/title")
+    @RequestMapping("/content/poem/title")
     public JsonResult<List<Poem>> poemWithTitle(@RequestParam(value="title", defaultValue="望岳") String title) {
         return new JsonResult<>(poemRepository.findByTitle(title));
     }
