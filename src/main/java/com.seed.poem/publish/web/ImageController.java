@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ImageController {
@@ -27,17 +28,11 @@ public class ImageController {
         this.storageService = storageService;
     }
 
-//    @GetMapping("/")
-//    public String listUploadedFiles(Model model) throws IOException {
-//
-//        model.addAttribute("files", storageService.loadAll().map(
-//                path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
-//                        "serveFile", path.getFileName().toString()).build().toString())
-//                .collect(Collectors.toList()));
-//
-//        return "uploadForm";
-//    }
-//
+    @PostMapping("/media/image/category")
+    public JsonResult<Map<String,List<String>>> userFiles(){
+        return new JsonResult<Map<String,List<String>>>(materialService.getUserFiles());
+    }
+
     @PostMapping("/media/image/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
@@ -48,7 +43,7 @@ public class ImageController {
     }
 
     @PostMapping("/media/image/upload")
-    public JsonResult<List<String>> upload(@RequestParam("category")String category,@RequestParam("file") MultipartFile[] file) {
+    public JsonResult<List<String>> upload(@RequestParam(value="category", defaultValue="素材")String category,@RequestParam("file") MultipartFile[] file) {
         List<String> res=storageService.store(file);
         materialService.storeImageInfo(category,res);
         return new JsonResult<>(res);
