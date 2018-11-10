@@ -1,6 +1,5 @@
 package com.seed.poem.business.web;
 
-import com.seed.poem.JsonResult;
 import com.seed.poem.PageResult;
 import com.seed.poem.business.model.Poem;
 import com.seed.poem.business.repo.PoemRepository;
@@ -25,11 +24,14 @@ public class PoemController {
         Pageable p = PageRequest.of(Integer.valueOf(page), 20);
         Page res = poemRepository.findByAuthor(author, p);
         List<Poem> data = res.getContent();
-        return new PageResult<>(data, res.getTotalPages() - 1, p.getPageNumber());
+        return new PageResult<List<Poem>>(data, res.getTotalPages() - 1, p.getPageNumber());
     }
 
     @RequestMapping("/content/poem/title")
-    public JsonResult<List<Poem>> poemWithTitle(@RequestParam(value = "title", defaultValue = "望岳") String title) {
-        return new JsonResult<>(poemRepository.findByTitle(title));
+    public PageResult<List<Poem>> poemWithTitle(@RequestParam(value = "title", defaultValue = "望岳") String title, @RequestParam(value = "page", defaultValue = "0") String page) {
+        Pageable p = PageRequest.of(Integer.valueOf(page), 20);
+        Page res = poemRepository.findByTitle(title, p);
+        List<Poem> data = res.getContent();
+        return new PageResult<List<Poem>>(data, res.getTotalPages() - 1, p.getPageNumber());
     }
 }

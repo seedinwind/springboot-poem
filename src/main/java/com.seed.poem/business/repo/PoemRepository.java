@@ -11,6 +11,6 @@ import java.util.List;
 //@RepositoryRestResource(collectionResourceRel = "poems", path = "poems")
 public interface PoemRepository extends MongoRepository<Poem,String> {
     Page<Poem> findByAuthor(@Param("author") String author, Pageable pageable);
-    List<Poem> findByTitle(@Param("title") String title);
+    Page<Poem> findByTitle(@Param("title") String title,Pageable pageable);
     List<Poem> findAll();
 }
